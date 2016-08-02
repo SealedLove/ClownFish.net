@@ -5,15 +5,15 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
-using ClownFish.Base.Http;
 
-namespace ClownFish.Data
+namespace ClownFish.Web
 {
+
 	/// <summary>
-	/// 用于指示ACTION参数是一个实体代理类型
+	/// 允许自定义特定数据类型的参数获取机制，用于在Action调用前获取Action参数值
 	/// </summary>
-	[AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false)]
-	public sealed class EntityProxyAttribute : CustomDataAttribute
+	[AttributeUsage(AttributeTargets.Parameter, AllowMultiple =false)]
+	public abstract class CustomDataAttribute : Attribute
 	{
 		/// <summary>
 		/// 根据HttpContext和ParameterInfo获取参数值
@@ -21,9 +21,6 @@ namespace ClownFish.Data
 		/// <param name="context"></param>
 		/// <param name="p"></param>
 		/// <returns></returns>
-		public override object GetHttpValue(HttpContext context, ParameterInfo p)
-		{
-			return EntityHttpLoader.LoadFromHttp(context, p);
-		}
+		public abstract object GetParameterValue(HttpContext context, ParameterInfo p);
 	}
 }

@@ -38,7 +38,3 @@ using System.Runtime.InteropServices;
 
 [assembly: ClownFish.Web.ControllerAssembly]
 [assembly: ClownFish.Web.NamespaceMap("ClownFish.Web.UnitTest.Controllers", "test")]
-
-
-// 指示包含实体的程序集
-[assembly: ClownFish.Data.EntityAssembly]

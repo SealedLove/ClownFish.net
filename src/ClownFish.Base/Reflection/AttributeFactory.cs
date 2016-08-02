@@ -18,10 +18,6 @@ namespace ClownFish.Base.Reflection
 			var key = new AttributeKey { Target = obj, AttributeType = typeof(T) };
 
 			object result = s_table[key];
-
-			if( DBNull.Value.Equals(result) )
-				return null;
-
 			if( result == null ) {
 				if( obj is MemberInfo )
 					result = (obj as MemberInfo).GetCustomAttribute<T>(inherit);
@@ -35,10 +31,7 @@ namespace ClownFish.Base.Reflection
 				else
 					throw new NotSupportedException();
 
-				if( result == null )
-					s_table[key] = DBNull.Value;
-				else
-					s_table[key] = result;
+				s_table[key] = result;
 			}
 
 			return result as T;
@@ -50,7 +43,6 @@ namespace ClownFish.Base.Reflection
 			var key = new AttributeKey { Target = obj, AttributeType = typeof(T) };
 
 			object result = s_table[key];
-			
 			if( result == null ) {
 				if( obj is MemberInfo )
 					result = (obj as MemberInfo).GetCustomAttributes<T>(inherit);
@@ -64,7 +56,6 @@ namespace ClownFish.Base.Reflection
 				else
 					throw new NotSupportedException();
 
-				// 就算是找不到指定的Attribute，GetCustomAttributes()会返回一个空数组，所以不需要引用空值判断
 				s_table[key] = result;
 			}
 

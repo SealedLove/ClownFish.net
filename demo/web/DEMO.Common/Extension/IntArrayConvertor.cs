@@ -8,10 +8,6 @@ using ClownFish.Web.Serializer;
 
 namespace DEMO.Common.Extension
 {
-	// 用法可参考示例： 
-	// TestDataConvert.html
-	// ActionDataTypeTest.cs
-
 	public class IntArrayConvertor : IHttpDataConvert
 	{
 		public object Convert(HttpContext context, string paraName)
